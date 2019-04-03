@@ -1,20 +1,14 @@
+const productSample = require('./products.sample').productsSample;
+
 export class ProductsService {
 
-    public products: any = [
-        {
-            name: 'oi',
-            id: 1
-        },
-        {
-            name: 'olar',
-            id: 2
-        }
-    ];
+    public products: any = productSample;
 
     configTypeDefs() {
         let typeDefs = `
           type Product {
             name: String,
+            description: String,
             id: Int
           } `;
         typeDefs += ` 

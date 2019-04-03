@@ -1,27 +1,34 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
+import {makeExecutableSchema} from 'graphql-tools';
+import {ProductsService} from './products/products.service'
 
 const app: express.Application = express();
 const port = 3000;
 
-import {makeExecutableSchema} from 'graphql-tools';
-import {ProductsService} from './products/products.service'
 
 let typeDefs: any = [`
   type Query {
     hello: String
   }
+     
   type Mutation {
-    hello: String
+    hello(message: String) : String
   }
 `];
 
-
+let helloMessage: String = 'World!';
 
 let resolvers = {
-    Query: {},
-    Mutation: {}
-
+    Query: {
+        hello: () => helloMessage
+    },
+    Mutation: {
+        hello: (_: any, helloData: any) => {
+            helloMessage = helloData.message;
+            return helloMessage;
+        }
+    }
 };
 
 let productsService = new ProductsService();
@@ -36,4 +43,4 @@ app.use(
         graphiql: true
     })
 );
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Node Graphql API listening on port ${port}!`));
