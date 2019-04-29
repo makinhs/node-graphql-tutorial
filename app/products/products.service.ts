@@ -9,7 +9,8 @@ export class ProductsService {
           type Product {
             name: String,
             description: String,
-            id: Int
+            id: Int,
+            price: Int
           } `;
         typeDefs += ` 
           extend type Query {
@@ -19,7 +20,7 @@ export class ProductsService {
 
         typeDefs += `
           extend type Mutation {
-            product(name:String, id:Int): Product!
+            product(name:String, id:Int, description: String, price: Int): Product!
           }`;
         return typeDefs;
     }

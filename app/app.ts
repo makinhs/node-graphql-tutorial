@@ -1,7 +1,8 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import {makeExecutableSchema} from 'graphql-tools';
-import {ProductsService} from './products/products.service'
+import {ProductsService} from './products/products.service';
+import {UsersService} from './users/users.service';
 
 const app: express.Application = express();
 const port = 3000;
@@ -32,9 +33,12 @@ let resolvers = {
 };
 
 let productsService = new ProductsService();
+let usersService = new UsersService();
 typeDefs += productsService.configTypeDefs();
-productsService.configResolvers(resolvers);
+typeDefs += usersService.configTypeDefs();
 
+productsService.configResolvers(resolvers);
+usersService.configResolvers(resolvers);
 
 app.use(
     '/graphql',
