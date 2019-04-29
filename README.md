@@ -1,4 +1,4 @@
-# node-graphql-tutorial
+# Node GraphQL Tutorial
 
 A basic skeleton for an API using Graphql and Express.js
 
