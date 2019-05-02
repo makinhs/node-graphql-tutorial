@@ -2,6 +2,10 @@
 
 A basic skeleton for an API using Graphql and Express.js
 
+This project was made to be used within the following article: 
+
+https://www.toptal.com/graphql/graphql-nodejs-api
+
 ## First things first
 
 Please run `npm install` before trying to run the program
